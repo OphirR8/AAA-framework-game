@@ -534,7 +534,7 @@ function checkAnswer(input) {
         document.getElementById('associate-response').classList.remove('hidden');
         document.getElementById('associate-response').querySelector('span').textContent = input;
     } else if (currentStep === 'Ask') {
-        if (lowercaseInput.includes('?')) {
+        if (lowercaseInput.includes('?') || lowercaseInput.includes('what') || lowercaseInput.includes('how') || lowercaseInput.includes('when') || lowercaseInput.includes('where')) {
             isCorrect = true;
             feedback = 'Boom! You nailed it with a great question!';
         } else {
