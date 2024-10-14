@@ -307,7 +307,6 @@ function shuffleArray(array) {
 // Start game function
 function startGame(minutes) {
     // ... (same as before)
-    document.getElementById('timer-buttons').classList.add('hidden');
 }
 
 // Update timer function
@@ -444,13 +443,13 @@ function startOver() {
 }
 
 // Event listeners
-document.getElementById('submit-btn').addEventListener('click', submitAnswer);
-document.getElementById('hint-btn').addEventListener('click', showHint);
-document.getElementById('end-game-btn').addEventListener('click', endGame);
-
 document.getElementById('timer-5min').addEventListener('click', () => startGame(5));
 document.getElementById('timer-10min').addEventListener('click', () => startGame(10));
 document.getElementById('timer-15min').addEventListener('click', () => startGame(15));
+
+document.getElementById('submit-btn').addEventListener('click', submitAnswer);
+document.getElementById('hint-btn').addEventListener('click', showHint);
+document.getElementById('end-game-btn').addEventListener('click', endGame);
 
 document.getElementById('user-input').addEventListener('keypress', function(e) {
     if (e.key === 'Enter' && !e.shiftKey) {
