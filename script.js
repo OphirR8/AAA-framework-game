@@ -317,6 +317,23 @@ function updateTimer() {
 // End game function
 function endGame() {
     // ... (same as before)
+    function endGame() {
+    clearInterval(timerInterval);
+    gameEnded = true;
+    document.getElementById('game-container').classList.add('hidden');
+    document.getElementById('timer').classList.add('hidden');
+    document.getElementById('final-score').innerHTML = `
+        Game Ended!<br>
+        Steps Completed: ${stepsCompleted}<br>
+        Scenarios Completed: ${scenariosCompleted}<br>
+        Commission Collected: $${commissionCollected}
+    `;
+    document.getElementById('final-score').classList.remove('hidden');
+
+    // Show the Start Over button
+    document.getElementById('start-over-container').classList.remove('hidden');
+}
+
 }
 
 // Update scenario function
