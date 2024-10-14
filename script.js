@@ -281,8 +281,8 @@ const scenariosData = [
         Ask: "Help them clarify what their key decision factors are."
     },
     bestApproach: {
-        Acknowledge: "You’re feeling unsure about which program to choose and are considering other options.",
-        Associate: "That’s completely understandable. Many clients found that, after weighing their options, they came back because this program aligned best with their long-term goals.",
+        Acknowledge: "You’re feeling unsure about which program to choose and are considering other options. That’s completely understandable.",
+        Associate: "Many clients found that, after weighing their options, they came back because this program aligned best with their long-term goals.",
         Ask: "What’s the key factor for you in deciding between programs? Let’s see if this is the right fit for that."
     }
 }
