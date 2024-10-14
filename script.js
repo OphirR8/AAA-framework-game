@@ -422,3 +422,35 @@ document.getElementById('user-input').addEventListener('keypress', function(e) {
         submitAnswer();
     }
 });
+
+document.getElementById('start-over-btn').addEventListener('click', startOver);
+
+function startOver() {
+    // Reset all game variables
+    currentScenarioIndex = -1;
+    currentStepIndex = 0;
+    stepsCompleted = 0;
+    scenariosCompleted = 0;
+    commissionCollected = 0;
+    timeRemaining = 0;
+    gameEnded = false;
+    responses = [];
+
+    // Hide elements related to game end
+    document.getElementById('final-score').classList.add('hidden');
+    document.getElementById('start-over-container').classList.add('hidden');
+    document.getElementById('best-approach-container').classList.add('hidden');
+
+    // Clear the response log
+    document.getElementById('response-log').innerHTML = '';
+    document.getElementById('log-container').style.display = 'none';
+
+    // Hide feedback and hint containers
+    document.getElementById('feedback').classList.add('hidden');
+    document.getElementById('hint-container').classList.add('hidden');
+
+    // Show the timer buttons again
+    document.getElementById('timer-buttons').classList.remove('hidden');
+}
+
+
