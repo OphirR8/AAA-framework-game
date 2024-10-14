@@ -387,6 +387,7 @@ function shuffleArray(array) {
 function startGame(minutes) {
     timeRemaining = minutes * 60;
     document.getElementById('timer-buttons').classList.add('hidden');
+    document.getElementById('learn-btn').classList.add('hidden'); // Hide Learn button
     document.getElementById('timer').classList.remove('hidden');
     document.getElementById('game-container').classList.remove('hidden');
     document.getElementById('log-container').style.display = 'block';
@@ -423,7 +424,11 @@ function endGame() {
 
     // Show the Start Over button
     document.getElementById('start-over-container').classList.remove('hidden');
+
+    // Show the Learn button
+    document.getElementById('learn-btn').classList.remove('hidden');
 }
+
 
 // Start over function
 function startOver() {
@@ -457,6 +462,15 @@ function startOver() {
     document.getElementById('score').innerHTML = '';
 
     // Reset the game container visibility
+    document.getElementById('game-container').classList.add('hidden');
+
+    // Show the Learn button again
+    document.getElementById('learn-btn').classList.remove('hidden');
+
+    // Show the timer buttons again
+    document.getElementById('timer-buttons').classList.remove('hidden');
+
+    // Hide the game container
     document.getElementById('game-container').classList.add('hidden');
 }
 
