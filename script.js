@@ -306,7 +306,15 @@ function shuffleArray(array) {
 
 // Start game function
 function startGame(minutes) {
-    // ... (same as before)
+    timeRemaining = minutes * 60;
+    document.getElementById('timer-buttons').classList.add('hidden');
+    document.getElementById('timer').classList.remove('hidden');
+    document.getElementById('game-container').classList.remove('hidden');
+    document.getElementById('log-container').style.display = 'block';
+    shuffleArray(scenariosData);
+    updateTimer();
+    timerInterval = setInterval(updateTimer, 1000);
+    updateScenario();
 }
 
 // Update timer function
@@ -317,21 +325,6 @@ function updateTimer() {
 // End game function
 function endGame() {
     // ... (same as before)
-    function endGame() {
-    clearInterval(timerInterval);
-    gameEnded = true;
-    document.getElementById('game-container').classList.add('hidden');
-    document.getElementById('timer').classList.add('hidden');
-    document.getElementById('final-score').innerHTML = `
-        Game Ended!<br>
-        Steps Completed: ${stepsCompleted}<br>
-        Scenarios Completed: ${scenariosCompleted}<br>
-        Commission Collected: $${commissionCollected}
-    `;
-    document.getElementById('final-score').classList.remove('hidden');
-
-    // Show the Start Over button
-    document.getElementById('start-over-container').classList.remove('hidden');
 }
 
 }
@@ -442,15 +435,20 @@ function startOver() {
     document.getElementById('timer-15min').disabled = false;
 }
 
-// Event listeners
+// Event listeners for timer buttons
 document.getElementById('timer-5min').addEventListener('click', () => startGame(5));
 document.getElementById('timer-10min').addEventListener('click', () => startGame(10));
 document.getElementById('timer-15min').addEventListener('click', () => startGame(15));
 
+// Event listener for Start Over button
+document.getElementById('start-over-btn').addEventListener('click', startOver);
+
+// Event listeners for other buttons
 document.getElementById('submit-btn').addEventListener('click', submitAnswer);
 document.getElementById('hint-btn').addEventListener('click', showHint);
 document.getElementById('end-game-btn').addEventListener('click', endGame);
 
+// Event listener for Enter key on user input
 document.getElementById('user-input').addEventListener('keypress', function(e) {
     if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
