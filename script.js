@@ -307,6 +307,7 @@ function shuffleArray(array) {
 // Start game function
 function startGame(minutes) {
     // ... (same as before)
+    document.getElementById('timer-buttons').classList.add('hidden');
 }
 
 // Update timer function
@@ -407,22 +408,6 @@ function displayBestApproach(index, scenarioLogElement) {
     // ... (same as before)
 }
 
-// Event listeners
-document.getElementById('submit-btn').addEventListener('click', submitAnswer);
-document.getElementById('hint-btn').addEventListener('click', showHint);
-document.getElementById('end-game-btn').addEventListener('click', endGame);
-
-document.getElementById('timer-5min').addEventListener('click', () => startGame(5));
-document.getElementById('timer-10min').addEventListener('click', () => startGame(10));
-document.getElementById('timer-15min').addEventListener('click', () => startGame(15));
-
-document.getElementById('user-input').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        submitAnswer();
-    }
-});
-
 document.getElementById('start-over-btn').addEventListener('click', startOver);
 
 function startOver() {
@@ -451,6 +436,25 @@ function startOver() {
 
     // Show the timer buttons again
     document.getElementById('timer-buttons').classList.remove('hidden');
+
+    // Re-enable timer buttons if they were disabled
+    document.getElementById('timer-5min').disabled = false;
+    document.getElementById('timer-10min').disabled = false;
+    document.getElementById('timer-15min').disabled = false;
 }
 
+// Event listeners
+document.getElementById('submit-btn').addEventListener('click', submitAnswer);
+document.getElementById('hint-btn').addEventListener('click', showHint);
+document.getElementById('end-game-btn').addEventListener('click', endGame);
 
+document.getElementById('timer-5min').addEventListener('click', () => startGame(5));
+document.getElementById('timer-10min').addEventListener('click', () => startGame(10));
+document.getElementById('timer-15min').addEventListener('click', () => startGame(15));
+
+document.getElementById('user-input').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        submitAnswer();
+    }
+});
