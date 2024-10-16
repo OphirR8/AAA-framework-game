@@ -598,18 +598,19 @@
         practiceTextarea.rows = 4;
         practiceTextarea.classList.add('w-full', 'p-2', 'border', 'rounded', 'mb-2');
 
-        // Submit and Clear Buttons
+        // Submit and Reset Buttons
         const submitButton = document.createElement('button');
         submitButton.textContent = 'Submit Practice';
         submitButton.classList.add('bg-green-500', 'text-white', 'px-3', 'py-1', 'rounded', 'mr-2', 'hover:bg-green-600');
 
-        const clearButton = document.createElement('button');
-        clearButton.textContent = 'Clear';
-        clearButton.classList.add('bg-red-500', 'text-white', 'px-3', 'py-1', 'rounded', 'hover:bg-red-600');
+        const resetButton = document.createElement('button');
+resetButton.textContent = 'Reset';
+resetButton.classList.add('bg-red-500', 'text-white', 'px-3', 'py-1', 'rounded', 'hover:bg-red-600');
+
 
         // Add event listeners
         submitButton.addEventListener('click', () => handlePracticeSubmit(index));
-        clearButton.addEventListener('click', () => handlePracticeClear(index));
+        resetButton.addEventListener('click', () => handlePracticeReset(index));
 
                 // Add keypress event listener to practice textarea
         practiceTextarea.addEventListener('keypress', (e) => {
@@ -624,7 +625,7 @@
         scenarioContent.appendChild(practiceCounter);
         scenarioContent.appendChild(practiceTextarea);
         scenarioContent.appendChild(submitButton);
-        scenarioContent.appendChild(clearButton);
+scenarioContent.appendChild(resetButton);
 
         
 
@@ -671,10 +672,16 @@
             practiceTextarea.value = '';
         }
         
-        function handlePracticeClear(index) {
-            const practiceTextarea = document.getElementById(`practice-textarea-${index}`);
-            practiceTextarea.value = '';
+      function handlePracticeReset(index) {
+    // Reset the practice count for this scenario
+    practiceCounts[index] = 0;
+    document.getElementById(`practice-counter-${index}`).textContent = `Times Practiced: ${practiceCounts[index]}`;
+
+    // Clear the practice textarea
+    const practiceTextarea = document.getElementById(`practice-textarea-${index}`);
+    practiceTextarea.value = '';
 }
+
         // Initialize the scenarios on page load
 document.addEventListener('DOMContentLoaded', () => {
     createScenarioElements();
