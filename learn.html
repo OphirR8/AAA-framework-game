@@ -498,16 +498,15 @@
     }
 ];
 
-        // Function to create scenario elements
         function createScenarioElements() {
-            const scenariosList = document.getElementById('scenarios-list');
+                const scenariosList = document.getElementById('scenarios-list');
             scenariosData.forEach((scenarioData, index) => {
                 // Scenario Title
                 const scenarioTitle = document.createElement('div');
                 scenarioTitle.classList.add('scenario-title');
                 scenarioTitle.textContent = `Scenario ${scenarioData.id}: "${scenarioData.scenario}"`;
                 scenarioTitle.dataset.index = index;
-
+        
                 // Scenario Content
                 const scenarioContent = document.createElement('div');
                 scenarioContent.classList.add('scenario-content');
@@ -576,68 +575,64 @@
                 alexContent.appendChild(askAlex);
 
                 // Add Practice Section
-                const practiceHeading = document.createElement('h4');
-                practiceHeading.classList.add('font-bold', 'mt-4');
-                practiceHeading.textContent = 'Your Practice';
+        const practiceHeading = document.createElement('h4');
+        practiceHeading.classList.add('font-bold', 'mt-4');
+        practiceHeading.textContent = 'Your Practice';
 
-                // Practice Counter
-                const practiceCounter = document.createElement('p');
-                practiceCounter.id = `practice-counter-${index}`;
-                practiceCounter.textContent = `Times Practiced: 0`;
-        
-                // Text Area for Practice
-                const practiceTextarea = document.createElement('textarea');
-                practiceTextarea.id = `practice-textarea-${index}`;
-                practiceTextarea.rows = 4;
-                practiceTextarea.classList.add('w-full', 'p-2', 'border', 'rounded', 'mb-2');
-        
-                // Submit and Clear Buttons
-                const submitButton = document.createElement('button');
-                submitButton.textContent = 'Submit Practice';
-                submitButton.classList.add('bg-green-500', 'text-white', 'px-3', 'py-1', 'rounded', 'mr-2', 'hover:bg-green-600');
-        
-                const clearButton = document.createElement('button');
-                clearButton.textContent = 'Clear';
-                clearButton.classList.add('bg-red-500', 'text-white', 'px-3', 'py-1', 'rounded', 'hover:bg-red-600');
-        
-                // Add event listeners
-                submitButton.addEventListener('click', () => handlePracticeSubmit(index));
-                clearButton.addEventListener('click', () => handlePracticeClear(index));
+        // Practice Counter
+        const practiceCounter = document.createElement('p');
+        practiceCounter.id = `practice-counter-${index}`;
+        practiceCounter.textContent = `Times Practiced: 0`;
 
-                // Append elements to the practice form
-                const practiceForm = document.createElement('div');
-                practiceForm.classList.add('practice-form');
-                practiceForm.appendChild(practiceTextarea);
-                practiceForm.appendChild(submitButton);
-                practiceForm.appendChild(clearButton);
-                
-                // Append all to scenario content
-                scenarioContent.appendChild(bestApproachHeading);
-                scenarioContent.appendChild(bestApproachContent);
-                scenarioContent.appendChild(tonyHeading);
-                scenarioContent.appendChild(tonyContent);
-                scenarioContent.appendChild(alexHeading);
-                scenarioContent.appendChild(alexContent);
-                scenarioContent.appendChild(practiceHeading);
-                scenarioContent.appendChild(practiceCounter);
-                scenarioContent.appendChild(practiceForm);
+        // Text Area for Practice
+        const practiceTextarea = document.createElement('textarea');
+        practiceTextarea.id = `practice-textarea-${index}`;
+        practiceTextarea.rows = 4;
+        practiceTextarea.classList.add('w-full', 'p-2', 'border', 'rounded', 'mb-2');
 
-                // Append to scenarios list
-                scenariosList.appendChild(scenarioTitle);
-                scenariosList.appendChild(scenarioContent);
+        // Submit and Clear Buttons
+        const submitButton = document.createElement('button');
+        submitButton.textContent = 'Submit Practice';
+        submitButton.classList.add('bg-green-500', 'text-white', 'px-3', 'py-1', 'rounded', 'mr-2', 'hover:bg-green-600');
 
-                // Add click event to toggle visibility
-                scenarioTitle.addEventListener('click', () => {
-                    const isVisible = scenarioContent.style.display === 'block';
-                    // Hide all scenario contents
-                    const allContents = document.querySelectorAll('.scenario-content');
-                    allContents.forEach(content => content.style.display = 'none');
-                    // Toggle the clicked one
-                    scenarioContent.style.display = isVisible ? 'none' : 'block';
-                });
-            });
-        }
+        const clearButton = document.createElement('button');
+        clearButton.textContent = 'Clear';
+        clearButton.classList.add('bg-red-500', 'text-white', 'px-3', 'py-1', 'rounded', 'hover:bg-red-600');
 
+        // Add event listeners
+        submitButton.addEventListener('click', () => handlePracticeSubmit(index));
+        clearButton.addEventListener('click', () => handlePracticeClear(index));
+
+        // Append practice elements to scenarioContent
+        scenarioContent.appendChild(practiceHeading);
+        scenarioContent.appendChild(practiceCounter);
+        scenarioContent.appendChild(practiceTextarea);
+        scenarioContent.appendChild(submitButton);
+        scenarioContent.appendChild(clearButton);
+
+        // Append scenario content elements
+        scenarioContent.appendChild(bestApproachHeading);
+        scenarioContent.appendChild(bestApproachContent);
+        scenarioContent.appendChild(tonyHeading);
+        scenarioContent.appendChild(tonyContent);
+        scenarioContent.appendChild(alexHeading);
+        scenarioContent.appendChild(alexContent);
+
+        // Append to scenarios list
+        scenariosList.appendChild(scenarioTitle);
+        scenariosList.appendChild(scenarioContent);
+
+        // Add click event to toggle visibility
+        scenarioTitle.addEventListener('click', () => {
+            const isVisible = scenarioContent.style.display === 'block';
+            // Hide all scenario contents
+            const allContents = document.querySelectorAll('.scenario-content');
+            allContents.forEach(content => content.style.display = 'none');
+            // Toggle the clicked one
+            scenarioContent.style.display = isVisible ? 'none' : 'block';
+        });
+    });
+}
         // Initialize the scenarios on page load
         document.addEventListener('DOMContentLoaded', () => {
             createScenarioElements();
