@@ -574,6 +574,14 @@
                 alexContent.appendChild(associateAlex);
                 alexContent.appendChild(askAlex);
 
+                // Append scenario content elements
+        scenarioContent.appendChild(bestApproachHeading);
+        scenarioContent.appendChild(bestApproachContent);
+        scenarioContent.appendChild(tonyHeading);
+        scenarioContent.appendChild(tonyContent);
+        scenarioContent.appendChild(alexHeading);
+        scenarioContent.appendChild(alexContent);
+
                 // Add Practice Section
         const practiceHeading = document.createElement('h4');
         practiceHeading.classList.add('font-bold', 'mt-4');
@@ -603,6 +611,14 @@
         submitButton.addEventListener('click', () => handlePracticeSubmit(index));
         clearButton.addEventListener('click', () => handlePracticeClear(index));
 
+                // Add keypress event listener to practice textarea
+        practiceTextarea.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handlePracticeSubmit(index);
+            }
+        });
+
         // Append practice elements to scenarioContent
         scenarioContent.appendChild(practiceHeading);
         scenarioContent.appendChild(practiceCounter);
@@ -610,13 +626,7 @@
         scenarioContent.appendChild(submitButton);
         scenarioContent.appendChild(clearButton);
 
-        // Append scenario content elements
-        scenarioContent.appendChild(bestApproachHeading);
-        scenarioContent.appendChild(bestApproachContent);
-        scenarioContent.appendChild(tonyHeading);
-        scenarioContent.appendChild(tonyContent);
-        scenarioContent.appendChild(alexHeading);
-        scenarioContent.appendChild(alexContent);
+        
 
         // Append to scenarios list
         scenariosList.appendChild(scenarioTitle);
