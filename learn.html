@@ -48,6 +48,42 @@
         .scenario-content p {
             margin-bottom: 8px;
         }
+        
+.practice-form {
+    margin-top: 10px;
+}
+
+.practice-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.practice-form button {
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+.scenario-content {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9fafb;
+}
+
+.scenario-title {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+    color: #374151;
+}
+
+.scenario-title:hover {
+    background-color: #f3f4f6;
+}
+
     </style>
 </head>
 <body>
@@ -540,6 +576,36 @@
                 alexContent.appendChild(associateAlex);
                 alexContent.appendChild(askAlex);
 
+                // Add Practice Section
+        const practiceHeading = document.createElement('h4');
+        practiceHeading.classList.add('font-bold', 'mt-4');
+        practiceHeading.textContent = 'Your Practice';
+
+        // Practice Counter
+        const practiceCounter = document.createElement('p');
+        practiceCounter.id = `practice-counter-${index}`;
+        practiceCounter.textContent = `Times Practiced: 0`;
+
+        // Text Area for Practice
+        const practiceTextarea = document.createElement('textarea');
+        practiceTextarea.id = `practice-textarea-${index}`;
+        practiceTextarea.rows = 4;
+        practiceTextarea.classList.add('w-full', 'p-2', 'border', 'rounded', 'mb-2');
+
+        // Submit and Clear Buttons
+        const submitButton = document.createElement('button');
+        submitButton.textContent = 'Submit Practice';
+        submitButton.classList.add('bg-green-500', 'text-white', 'px-3', 'py-1', 'rounded', 'mr-2', 'hover:bg-green-600');
+
+        const clearButton = document.createElement('button');
+        clearButton.textContent = 'Clear';
+        clearButton.classList.add('bg-red-500', 'text-white', 'px-3', 'py-1', 'rounded', 'hover:bg-red-600');
+
+        // Add event listeners
+        submitButton.addEventListener('click', () => handlePracticeSubmit(index));
+        clearButton.addEventListener('click', () => handlePracticeClear(index));
+
+                
                 // Append all to scenario content
                 scenarioContent.appendChild(bestApproachHeading);
                 scenarioContent.appendChild(bestApproachContent);
@@ -568,6 +634,36 @@
         document.addEventListener('DOMContentLoaded', () => {
             createScenarioElements();
         });
+        
+        // Initialize practice counts
+let practiceCounts = {};
+
+function handlePracticeSubmit(index) {
+    // Increment practice count
+    if (!practiceCounts[index]) {
+        practiceCounts[index] = 0;
+    }
+    practiceCounts[index]++;
+    document.getElementById(`practice-counter-${index}`).textContent = `Times Practiced: ${practiceCounts[index]}`;
+
+    // Get user input
+    const practiceTextarea = document.getElementById(`practice-textarea-${index}`);
+    const userInput = practiceTextarea.value.trim();
+
+    // Optional: You can store or process the user input as needed
+    // For now, we'll just log it to the console
+    console.log(`Scenario ${index + 1} Practice Input:`, userInput);
+
+    // Optionally, clear the input after submission
+    // practiceTextarea.value = '';
+}
+
+function handlePracticeClear(index) {
+    const practiceTextarea = document.getElementById(`practice-textarea-${index}`);
+    practiceTextarea.value = '';
+}
+
+        
     </script>
 </body>
 </html>
