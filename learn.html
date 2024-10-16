@@ -668,15 +668,17 @@
             console.log(`Scenario ${index + 1} Practice Input:`, userInput);
         
             // Optionally, clear the input after submission
-            // practiceTextarea.value = '';
+            practiceTextarea.value = '';
         }
         
         function handlePracticeClear(index) {
             const practiceTextarea = document.getElementById(`practice-textarea-${index}`);
             practiceTextarea.value = '';
-        }
-
-        
+}
+        // Initialize the scenarios on page load
+document.addEventListener('DOMContentLoaded', () => {
+    createScenarioElements();
+});
     </script>
 </body>
 </html>
