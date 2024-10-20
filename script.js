@@ -516,7 +516,7 @@ function checkAnswer(input) {
 
     // Determine correctness based on keyword matching
     if (currentStep === 'Acknowledge') {
-        if (lowercaseInput.includes('understand') || lowercaseInput.includes('hear') || lowercaseInput.includes('see') || lowercaseInput.includes('feel')) {
+        if (lowercaseInput.includes('understand') || lowercaseInput.includes('hear') || lowercaseInput.includes('see') || lowercaseInput.includes('feel') || lowercaseInput.includes('you')) {
             isCorrect = true;
             feedback = 'Boom! Great acknowledgment of the concern!';
         } else {
