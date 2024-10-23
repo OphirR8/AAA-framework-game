@@ -501,12 +501,21 @@ function clearPreviousResponses() {
 
 // Show hint function
 function showHint() {
-    const hint = scenariosData[currentScenarioIndex].hints[currentStep];
-    if (hint) {
-        document.getElementById('hint-container').innerText = `Hint for ${currentStep}: ${hint}`;
+    let hintText = '';
+    if (currentStep === 'Acknowledge') {
+        hintText = 'Repeat the prospect’s concern back to them to show understanding.';
+    } else if (currentStep === 'Associate') {
+        hintText = 'Relate their concern to positive experiences of others.';
+    } else if (currentStep === 'Ask') {
+        hintText = 'Ask an open-ended question to explore their concern further.';
+    }
+
+    if (hintText) {
+        document.getElementById('hint-container').innerText = `Hint for ${currentStep}: ${hintText}`;
         document.getElementById('hint-container').classList.remove('hidden');
     }
 }
+
 
 // Check answer function
 function checkAnswer(input) {
