@@ -603,6 +603,9 @@ function submitAnswer() {
     if (userInput.trim() !== '') {
         checkAnswer(userInput.trim());
         document.getElementById('user-input').value = '';
+
+         // Hide the hint container after submission
+        document.getElementById('hint-container').classList.add('hidden');
     }
 }
 
